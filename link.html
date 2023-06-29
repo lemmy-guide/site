@@ -10,12 +10,19 @@
         <h2>You're invited to</h2>
         <h1 id="roomName">Please enable javascript</h1>
       </header>
-      <hr />
-      <header>
+      <!-- <hr /> -->
+      <!-- <header>
         <h2>You're going via</h2>
         <h1 id="instanceName"></h1>
+        <details>
+          <summary>Change instance</summary>
+          <form class="box" id="instance-edit-form">
+            <input type="text" name="instance" placeholder="lemmy.ml" />
+            <input type="submit" value="Save" />
+          </form>
+        </details>
       </header>
-      <hr />
+      <hr /> -->
       <section>
         <aside>
           <a href="" id="browser-link">
@@ -61,6 +68,9 @@
 
     // instance is the hostname after the last @ symbol
     const instance = target.split("@").pop();
+    const instanceInput = document.querySelector(
+      'input[name="instance"]'
+    ).value;
 
     // entity is between the first character and the last @ symbol
     const entity = target.substring(1, target.lastIndexOf("@"));
@@ -74,5 +84,13 @@
     document.getElementById("browser-link").href = `https://` + targetUrl;
     // set liftoff link
     document.getElementById("liftoff-link").href = `liftoff://` + targetUrl;
+
+    document
+      .getElementById("instance-edit-form")
+      .addEventListener("submit", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      });
   </script>
 </html>

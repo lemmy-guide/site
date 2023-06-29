@@ -7,6 +7,19 @@ img.icon {
 img.icon.half {
   width: 6rem;
 }
+img.icon.large {
+  width: 18rem;
+}
+
+.box {
+  width: 16rem;
+  margin: auto;
+}
+
 body {
+  text-align: center;
+}
+
+input[type="text"] {
   text-align: center;
 }
