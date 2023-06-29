@@ -3,27 +3,36 @@
     <title>You're invited to Lemmy</title>
     <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
     <link rel="stylesheet" href="./index.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
+    <header>
+      <h2>You're invited to</h2>
+      <h1 id="roomName">Please enable javascript</h1>
+    </header>
+    <hr />
     <main>
       <header>
-        <h2>You're invited to</h2>
-        <h1 id="roomName">Please enable javascript</h1>
-      </header>
-      <!-- <hr /> -->
-      <!-- <header>
         <h2>You're going via</h2>
         <h1 id="instanceName"></h1>
         <details>
           <summary>Change instance</summary>
           <form class="box" id="instance-edit-form">
-            <input type="text" name="instance" placeholder="lemmy.ml" />
+            <input
+              required
+              type="text"
+              name="instance"
+              placeholder="lemmy.ml"
+            />
             <input type="submit" value="Save" />
           </form>
         </details>
       </header>
-      <hr /> -->
+      <hr />
       <section>
+        <header>
+          <!-- empty header to get the padding right -->
+        </header>
         <aside>
           <a href="" id="browser-link">
             <h2>Open in browser</h2>
@@ -67,13 +76,12 @@
     const prefix = target.charAt(0) === "@" ? "u" : "c";
 
     // instance is the hostname after the last @ symbol
-    const instance = target.split("@").pop();
-    const instanceInput = document.querySelector(
-      'input[name="instance"]'
-    ).value;
+    const instance =
+      localStorage.getItem("instance") || target.split("@").pop();
+    const instanceInput = document.querySelector('input[name="instance"]');
 
-    // entity is between the first character and the last @ symbol
-    const entity = target.substring(1, target.lastIndexOf("@"));
+    // entity is the target exlcuding ! or @
+    const entity = target.slice(1);
 
     const targetUrl = `${instance}/${prefix}/${entity}`;
 
@@ -90,7 +98,10 @@
       .addEventListener("submit", (e) => {
         e.preventDefault();
         e.stopPropagation();
-        return false;
+
+        localStorage.setItem("instance", instanceInput.value);
+
+        window.location.reload();
       });
   </script>
 </html>
