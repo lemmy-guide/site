@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>You're invited to Lemmy</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
+    <style>
+      :root {
+        --justify-normal: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h2>You're invited to</h2>
+      <h1 id="roomName">Please enable javascript</h1>
+    </header>
+    <main>
+      <section>
+        <aside>
+          <h2>Open in browser</h2>
+        </aside>
+        <aside><h2>Open in Liftoff</h2></aside>
+      </section>
+    </main>
+  </body>
+  <script type="application/javascript">
+    // get target from search params
+    const urlParams = new URLSearchParams(window.location.search);
+    const target = urlParams.get("target");
+
+    // if target is empty, redirect to home page
+    if (!target) {
+      window.location.replace("/");
+    }
+
+    // set room name
+    document.getElementById("roomName").innerText = target;
+  </script>
+</html>
