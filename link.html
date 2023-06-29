@@ -6,6 +6,12 @@
       :root {
         --justify-normal: center;
       }
+      img.icon {
+        width: 256px;
+      }
+      img.icon.half {
+        width: 128px;
+      }
     </style>
   </head>
   <body>
@@ -16,9 +22,20 @@
     <main>
       <section>
         <aside>
-          <h2>Open in browser</h2>
+          <a href="" id="browser-link">
+            <h2>Open in browser</h2>
+            <img src="./chrome.svg" class="icon half" />
+            <img src="./firefox.svg" class="icon half" />
+            <img src="./edge.svg" class="icon half" />
+            <img src="./safari-ios.svg" class="icon half" />
+          </a>
         </aside>
-        <aside><h2>Open in Liftoff</h2></aside>
+        <aside>
+          <a href="" id="liftoff-link">
+            <h2>Open in Liftoff</h2>
+            <img src="./liftoff.svg" class="icon" />
+          </a>
+        </aside>
       </section>
     </main>
   </body>
@@ -34,5 +51,21 @@
 
     // set room name
     document.getElementById("roomName").innerText = target;
+
+    // prefix is baesd on the first character of target
+    const prefix = target.charAt(0) === "@" ? "u" : "c";
+
+    // instance is the hostname after the last @ symbol
+    const instance = target.split("@").pop();
+
+    // entity is between the first character and the last @ symbol
+    const entity = target.substring(1, target.lastIndexOf("@"));
+
+    const targetUrl = `${instance}/${prefix}/${entity}`;
+
+    // set browser link
+    document.getElementById("browser-link").href = `https://` + targetUrl;
+    // set liftoff link
+    document.getElementById("liftoff-link").href = `liftoff://` + targetUrl;
   </script>
 </html>
