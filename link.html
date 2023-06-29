@@ -2,27 +2,20 @@
   <head>
     <title>You're invited to Lemmy</title>
     <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
-    <style>
-      :root {
-        --justify-normal: center;
-      }
-      img.icon {
-        width: 256px;
-      }
-      img.icon.half {
-        width: 128px;
-      }
-      aside {
-        text-align: center;
-      }
-    </style>
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <header>
-      <h2>You're invited to</h2>
-      <h1 id="roomName">Please enable javascript</h1>
-    </header>
     <main>
+      <header>
+        <h2>You're invited to</h2>
+        <h1 id="roomName">Please enable javascript</h1>
+      </header>
+      <hr />
+      <header>
+        <h2>You're going via</h2>
+        <h1 id="instanceName"></h1>
+      </header>
+      <hr />
       <section>
         <aside>
           <a href="" id="browser-link">
@@ -41,6 +34,14 @@
         </aside>
       </section>
     </main>
+    <footer>
+      <hr />
+      <p>
+        <small>
+          <a href="https://github.com/lemmy-guide/site">GitHub</a>
+        </small>
+      </p>
+    </footer>
   </body>
   <script type="application/javascript">
     // get target from search params
@@ -65,6 +66,9 @@
     const entity = target.substring(1, target.lastIndexOf("@"));
 
     const targetUrl = `${instance}/${prefix}/${entity}`;
+
+    // set instance name
+    document.getElementById("instanceName").innerText = instance;
 
     // set browser link
     document.getElementById("browser-link").href = `https://` + targetUrl;

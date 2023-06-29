@@ -1,0 +1,12 @@
+:root {
+  --justify-normal: center;
+}
+img.icon {
+  width: 14rem;
+}
+img.icon.half {
+  width: 6rem;
+}
+body {
+  text-align: center;
+}
