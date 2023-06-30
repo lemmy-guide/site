@@ -48,6 +48,12 @@
             <img src="./liftoff.svg" class="icon" />
           </a>
         </aside>
+        <aside>
+          <a href="" id="memmy-link">
+            <h2>Open in Memmy</h2>
+            <img src="./memmy.png" class="icon" style="border-radius: 1em" />
+          </a>
+        </aside>
       </section>
     </main>
     <footer>
@@ -92,6 +98,8 @@
     document.getElementById("browser-link").href = `https://` + targetUrl;
     // set liftoff link
     document.getElementById("liftoff-link").href = `liftoff://` + targetUrl;
+    // set memmy link
+    document.getElementById("memmy-link").href = `memmyapp://` + targetUrl;
 
     document
       .getElementById("instance-edit-form")
