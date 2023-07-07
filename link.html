@@ -11,7 +11,7 @@
       <h1 id="roomName">Please enable javascript</h1>
     </header>
     <hr />
-    <main>
+    <main class="no-max-width">
       <header>
         <h2>You're going via</h2>
         <h1 id="instanceName"></h1>
@@ -34,7 +34,7 @@
           <!-- empty header to get the padding right -->
         </header>
         <aside>
-          <a href="" id="browser-link">
+          <a href="target-placeholder" data-protocol="https" id="browser-link">
             <h2>Open in browser</h2>
             <img src="./chrome.svg" class="icon half" />
             <img src="./firefox.svg" class="icon half" />
@@ -43,15 +43,25 @@
           </a>
         </aside>
         <aside>
-          <a href="" id="liftoff-link">
+          <a
+            href="target-placeholder"
+            data-protocol="liftoff"
+            id="liftoff-link"
+          >
             <h2>Open in Liftoff</h2>
             <img src="./liftoff.svg" class="icon" />
           </a>
         </aside>
         <aside>
-          <a href="" id="memmy-link">
+          <a href="target-placeholder" data-protocol="memmy" id="memmy-link">
             <h2>Open in Memmy</h2>
-            <img src="./memmy.png" class="icon" style="border-radius: 1em" />
+            <img src="./memmy.png" class="icon rounded" />
+          </a>
+        </aside>
+        <aside>
+          <a href="target-placeholder" data-protocol="mlem" id="mlem-link">
+            <h2>Open in Mlem</h2>
+            <img src="./mlem.png" class="icon rounded" />
           </a>
         </aside>
       </section>
@@ -94,12 +104,10 @@
     // set instance name
     document.getElementById("instanceName").innerText = instance;
 
-    // set browser link
-    document.getElementById("browser-link").href = `https://` + targetUrl;
-    // set liftoff link
-    document.getElementById("liftoff-link").href = `liftoff://` + targetUrl;
-    // set memmy link
-    document.getElementById("memmy-link").href = `memmyapp://` + targetUrl;
+    // set links based on html data attributes
+    document.querySelectorAll('a[href="target-placeholder"]').forEach((a) => {
+      a.href = a.dataset.protocol + "://" + targetUrl;
+    });
 
     document
       .getElementById("instance-edit-form")

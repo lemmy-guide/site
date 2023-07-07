@@ -1,5 +1,6 @@
 :root {
   --justify-normal: center;
+  --width-content: 1650px;
 }
 img.icon {
   width: 14rem;
@@ -9,6 +10,10 @@ img.icon.half {
 }
 img.icon.large {
   width: 18rem;
+}
+
+.rounded {
+  border-radius: 1em;
 }
 
 .box {
