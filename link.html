@@ -85,6 +85,18 @@
       window.location.replace("/");
     }
 
+    // some versions of liftoff shared a https link as a target
+    // this was a bug, but we can handle it here
+    if (target.startsWith("https://")) {
+      const url = new URL(target);
+      let [, operation, actualTarget] = url.pathname.split("/");
+      const prefix = operation === "u" ? "@" : "!";
+      if (!actualTarget.includes("@")) {
+        actualTarget = `${actualTarget}@${url.hostname}`;
+      }
+      window.location.search = `?target=${prefix}${actualTarget}`;
+    }
+
     // set room name
     document.getElementById("roomName").innerText = target;
 
